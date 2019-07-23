@@ -1,0 +1,40 @@
+#!/usr/bin/env node
+//
+// run with:
+// $ node bin/console --experimental-repl-await
+// $ ./bin/console --experimental-repl-await
+//
+/**
+ * Opens a node REPL with global variables already loaded:
+ * - app - the express app
+ * - models - the Sequelize models
+ *
+ * ref: https://stackoverflow.com/a/6770087
+ *
+ * usage
+ * ----
+ * docker: `docker-compose exec api sh -c 'yarn run console'`
+ * bash:   `yarn run console`
+ *
+ */
+
+process.env.NODE_ENV = process.env.NODE_ENV || 'development'
+
+// var fs = require('fs');
+// var path = require('path');
+// const { execSync } = require('child_process');
+
+const repl = require('repl')
+
+let r = repl.start({
+  // useGlobal: true,
+  // ignoreUndefined: true,
+  // replMode: repl.REPL_MODE_STRICT,
+  // --experimental-repl-await
+  experimentalReplAwait: true
+})
+
+// requiring itself
+r.context.abilities = require('../dist/abilities.cjs.js')
+
+// add your dependencies here as you wish..

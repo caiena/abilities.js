@@ -1,0 +1,131 @@
+#!/usr/bin/env node
+
+//
+// IMPORTANT: it's a poc. It barely works.
+// It requires its dependencies to be installed
+// `yarn add --dev node-watch dependency-tree`
+//
+//
+// But it need further work
+// @see https://github.com/rhuelga/guard-mocha-node
+//
+// TODO list
+// - remove dependency-tree
+// - convention over configuration:
+//   - make a direct map between source files and test files
+//   - i.e. app/models/user.js => test/models/user.spec.js
+//
+//
+
+//
+// run with
+// ```bash
+// node bin/mocha-watch
+// ```
+//
+// @src https://github.com/mochajs/mocha/issues/2928#issuecomment-371658851
+
+
+'use strict'
+
+const watch = require('node-watch')
+const execSync = require('child_process').execSync
+const path = require('path')
+const fs = require('fs')
+const glob = require('glob')
+
+const WATCH_TIMEOUT = 100
+let changedFiles = []
+let timeout = null
+
+const APP_ROOT = path.resolve(path.join(__dirname, '..'))
+const TEST_DIRNAME = 'test' // change it to 'spec' if needed
+const TEST_DIR = path.join(APP_ROOT, TEST_DIRNAME)
+
+const testFileRE = /\.spec\.js$/
+const testFileSuffix = '.spec.js'
+const sourceFileRE = /\.js$/
+const sourceFileSuffix = '.js'
+
+
+function enqueue(name) {
+  if (timeout) clearTimeout(timeout)
+
+  changedFiles.push(name)
+
+  timeout = setTimeout(() => {
+    try {
+      // build test file list
+      let tests = []
+
+      for (let file of changedFiles) {
+        if (file.startsWith(TEST_DIR) && testFileRE.test(file)) {
+          tests.push(file)
+
+        } else {
+          // mapping of source-file => test-file.
+          // allows breaking files into multiple test files like:
+          // - src/path/file.js
+          //   -> test/path/file.spec.js
+          //   -> test/path/file.custom.spec.js
+          // ----
+          let testFileGlobPath = file.replace(`${APP_ROOT}/`, '')
+            .replace(sourceFileSuffix, `*${testFileSuffix}`)
+
+          // `src/${dirs}` are directly mapped to test/${dirs}:
+          // -> src/path/file.js -> src/path/file*.spec.js
+          if (testFileGlobPath.startsWith('src/')) {
+            testFileGlobPath = testFileGlobPath.replace('src/', '')
+          }
+
+
+          testFileGlobPath = path.join(TEST_DIR, testFileGlobPath)
+
+          let matchingTestFiles = glob.sync(testFileGlobPath) // or empty array `[]`
+          tests = tests.concat(matchingTestFiles)
+        }
+      }
+
+
+      changedFiles = []
+
+      if (tests.length) {
+        let files = tests.join(' ')
+
+        // CHANGE YOUR COMMAND
+        // const command = `CI=true TS_NODE_FAST=true node mocha --exit "${files}" -P`
+        const command = `CI=true TS_NODE_FAST=true yarn run mocha --exit ${files}`
+        console.log('\n-- Running --\n')
+        console.log(command)
+
+        // redirecting stdio (stdout, stderr) to see output in terminal
+        // @see https://stackoverflow.com/a/31104898
+        // @see http://theantway.com/2016/12/capture-console-output-when-using-child_process-execsync-in-node-js/
+        execSync(command, { stdio: 'inherit' })
+      }
+    } catch (ex) {
+      console.error('[mocha-watch]', ex)
+    }
+  }, WATCH_TIMEOUT)
+}
+
+
+watch(
+  `${APP_ROOT}/src`, // i.e. src/models, src/routes, src/commands, ...
+  { recursive: true, filter: sourceFileRE },
+  (evt, name) => { enqueue(name) }
+)
+
+// watch(
+//   `${APP_ROOT}/lib`,
+//   { recursive: true, filter: sourceFileRE },
+//   (evt, name) => { enqueue(name) }
+// )
+
+
+watch(
+  `${APP_ROOT}/test`,
+  { recursive: true, filter: testFileRE },
+  (evt, name) => { enqueue(name) }
+)
+

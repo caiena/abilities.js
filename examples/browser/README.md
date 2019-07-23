@@ -1,0 +1,3 @@
+- server.js provides a simple Node HTTP server for testing UMD bundle
+- run: `./server.js` and open a browser at http://localhost:8080
+- checkout all `_` (lodashExt) keys shown in a `<p>` tag

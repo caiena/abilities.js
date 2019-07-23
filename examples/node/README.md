@@ -1,0 +1,3 @@
+- script.js provides a simple Node script importing the CommonJS dist
+- run: `./script.js`
+  - it'll print out all `_` (lodashExt) keys
