@@ -1,0 +1,33 @@
+<!doctype html>
+
+<!-- XXX: THIS DOES NOT WORK! IF YOU WANT TO USE IN A BROWSER, TRANSPILE THIS ESM MOUDLE WITH WEBPACK -->
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>playground</title>
+  <meta name="description" content="html5 playground">
+  <meta name="author" content="caiena.net">
+
+  <!-- <link rel="stylesheet" href="css/styles.css?v=1.0"> -->
+
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <script type="module" src="abilities.esm.js"></script>
+  <script type="module">
+      import * as abilities from './abilities.esm'
+
+      var p = document.createElement('p');
+      var content = Object.keys(abilities).sort().join(', ')
+
+      p.innerHTML = content
+
+      document.body.appendChild(p)
+  </script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+../../dist/abilities.umd.js

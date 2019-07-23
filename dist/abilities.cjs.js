@@ -2,134 +2,25 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
 require('core-js/modules/es6.object.assign');
 require('core-js/modules/web.dom.iterable');
 require('core-js/modules/es6.regexp.to-string');
+var _classCallCheck = _interopDefault(require('@babel/runtime/helpers/classCallCheck'));
+var _createClass = _interopDefault(require('@babel/runtime/helpers/createClass'));
 require('core-js/modules/es7.symbol.async-iterator');
 require('core-js/modules/es6.symbol');
 require('core-js/modules/es6.function.name');
+var _typeof = _interopDefault(require('@babel/runtime/helpers/typeof'));
 require('core-js/modules/es6.array.iterator');
 require('core-js/modules/es6.object.keys');
+var _regeneratorRuntime = _interopDefault(require('@babel/runtime/regenerator'));
 require('regenerator-runtime/runtime');
-
-function _typeof(obj) {
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    _typeof = function (obj) {
-      return typeof obj;
-    };
-  } else {
-    _typeof = function (obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-  }
-
-  return _typeof(obj);
-}
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
-  try {
-    var info = gen[key](arg);
-    var value = info.value;
-  } catch (error) {
-    reject(error);
-    return;
-  }
-
-  if (info.done) {
-    resolve(value);
-  } else {
-    Promise.resolve(value).then(_next, _throw);
-  }
-}
-
-function _asyncToGenerator(fn) {
-  return function () {
-    var self = this,
-        args = arguments;
-    return new Promise(function (resolve, reject) {
-      var gen = fn.apply(self, args);
-
-      function _next(value) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
-      }
-
-      function _throw(err) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
-      }
-
-      _next(undefined);
-    });
-  };
-}
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) _setPrototypeOf(subClass, superClass);
-}
-
-function _getPrototypeOf(o) {
-  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
-}
-
-function _setPrototypeOf(o, p) {
-  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
-
-function _possibleConstructorReturn(self, call) {
-  if (call && (typeof call === "object" || typeof call === "function")) {
-    return call;
-  }
-
-  return _assertThisInitialized(self);
-}
+var _asyncToGenerator = _interopDefault(require('@babel/runtime/helpers/asyncToGenerator'));
+var _possibleConstructorReturn = _interopDefault(require('@babel/runtime/helpers/possibleConstructorReturn'));
+var _getPrototypeOf = _interopDefault(require('@babel/runtime/helpers/getPrototypeOf'));
+var _inherits = _interopDefault(require('@babel/runtime/helpers/inherits'));
 
 function ForbiddenError(message) {var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   Error.call(this);
@@ -481,7 +372,7 @@ AsyncAbility = /*#__PURE__*/function (_Ability) {_inherits(AsyncAbility, _Abilit
 
     // override
     // - async
-    value: function () {var _relevantRuleFor = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(action, subject, field) {var rules, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, rule;return regeneratorRuntime.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+    value: function () {var _relevantRuleFor = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee(action, subject, field) {var rules, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, rule;return _regeneratorRuntime.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 rules = this.rulesFor(action, subject, field);_iteratorNormalCompletion = true;_didIteratorError = false;_iteratorError = undefined;_context.prev = 4;_iterator =
 
                 rules[Symbol.iterator]();case 6:if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {_context.next = 15;break;}rule = _step.value;_context.next = 10;return (
@@ -495,7 +386,7 @@ AsyncAbility = /*#__PURE__*/function (_Ability) {_inherits(AsyncAbility, _Abilit
 
     // override
     // - async
-  }, { key: "can", value: function () {var _can = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(action, subject, field) {var rule;return regeneratorRuntime.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:if (!(
+  }, { key: "can", value: function () {var _can = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2(action, subject, field) {var rule;return _regeneratorRuntime.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:if (!(
                 field && typeof field !== 'string')) {_context2.next = 2;break;}throw (
 
                   new Error('[abilities]: Ability.can(action, subject, field) expects 3rd parameter (field) to be a string.'));case 2:_context2.next = 4;return (
@@ -509,7 +400,7 @@ AsyncAbility = /*#__PURE__*/function (_Ability) {_inherits(AsyncAbility, _Abilit
 
     // override
     // - async
-  }, { key: "cannot", value: function () {var _cannot = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {var can,_args3 = arguments;return regeneratorRuntime.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:_context3.next = 2;return (
+  }, { key: "cannot", value: function () {var _cannot = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee3() {var can,_args3 = arguments;return _regeneratorRuntime.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:_context3.next = 2;return (
                   this.can.apply(this, _args3));case 2:can = _context3.sent;return _context3.abrupt("return",
 
                 !can);case 4:case "end":return _context3.stop();}}}, _callee3, this);}));function cannot() {return _cannot.apply(this, arguments);}return cannot;}()
@@ -517,7 +408,7 @@ AsyncAbility = /*#__PURE__*/function (_Ability) {_inherits(AsyncAbility, _Abilit
 
     // override
     // - async
-  }, { key: "throwUnlessCan", value: function () {var _throwUnlessCan = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {var _len,args,_key,rule,action,subject,field,subjectName,_args4 = arguments;return regeneratorRuntime.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:for (_len = _args4.length, args = new Array(_len), _key = 0; _key < _len; _key++) {args[_key] = _args4[_key];}_context4.next = 3;return (
+  }, { key: "throwUnlessCan", value: function () {var _throwUnlessCan = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee4() {var _len,args,_key,rule,action,subject,field,subjectName,_args4 = arguments;return _regeneratorRuntime.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:for (_len = _args4.length, args = new Array(_len), _key = 0; _key < _len; _key++) {args[_key] = _args4[_key];}_context4.next = 3;return (
                   this.relevantRuleFor.apply(this, args));case 3:rule = _context4.sent;if (!(
 
                 !rule || rule.inverted)) {_context4.next = 8;break;}

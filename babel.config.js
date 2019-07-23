@@ -19,7 +19,9 @@ module.exports = {
 
   plugins: [
     "convert-to-json",
-    "import-glob"
+    "import-glob",
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-proposal-object-rest-spread",
   ],
 
   // @see https://github.com/Microsoft/vscode/issues/5728#issuecomment-340219041

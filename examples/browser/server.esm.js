@@ -48,7 +48,7 @@ http.createServer(function (req, res) {
 
     // if is a directory, then look for index.html
     if (fs.statSync(pathname).isDirectory()) {
-      pathname += '/index.html';
+      pathname += '/index.esm.html';
     }
 
     // read file from file system

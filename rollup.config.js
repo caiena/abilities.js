@@ -11,8 +11,8 @@ export default [
   {
     input: 'src/index.js',
     output: {
-      name: 'model',
-      // file: 'dist/model.umd.js',
+      name: 'abilities',
+      // file: 'dist/abilities.umd.js',
       file: pkg.browser,
       format: 'umd',
       sourcemap: true
@@ -29,7 +29,8 @@ export default [
       resolve(), // so Rollup can find dependencies (e.g. `lodash`)
       commonjs(), // so Rollup can convert dependencies (e.g. `lodash`) to an ES module
       babel({
-        exclude: ['node_modules/**']
+        runtimeHelpers: true,
+        exclude: ['node_modules/**'],
       }),
     ]
   },
@@ -42,12 +43,13 @@ export default [
   // `file` and `format` for each target)
   {
     input: 'src/index.js',
-    external: ['@caiena/lodash-ext', '@caiena/i18n', 'moment'],
+    // SAMPLE:
+    // external: ['@caiena/lodash-ext', '@caiena/i18n', 'moment'],
     output: [
       { file: pkg.main,   format: 'cjs', sourcemap: true },
       { file: pkg.module, format: 'es',  sourcemap: true }
-      // { file: 'dist/model.cjs.js', format: 'cjs', sourcemap: true },
-      // { file: 'dist/model.esm.js', format: 'es',  sourcemap: true }
+      // { file: 'dist/abilities.cjs.js', format: 'cjs', sourcemap: true },
+      // { file: 'dist/abilities.esm.js', format: 'es',  sourcemap: true }
     ],
     plugins: [
       yaml(),
@@ -59,6 +61,7 @@ export default [
       }),
       localResolve(), // allowing import of index.js files from directory name
       babel({
+        runtimeHelpers: true,
         exclude: ['node_modules/**']
       }),
     ]
