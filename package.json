@@ -40,9 +40,8 @@
     "prebuild": "rm -rf ./dist/*",
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "pretest": "yarn run build",
-    "pretest:all": "yarn run build",
     "test": "mocha --exit",
+    "pretest:all": "yarn run build",
     "test:all": "mocha --exit \"test/**/*.spec.js\"",
     "test:watch": "node ./bin/mocha-watch"
   },

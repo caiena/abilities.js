@@ -18,10 +18,6 @@ describe('ManagerAbility', () => {
   describe('with User', () => {
     it('can read all users', async () => {
       await expect(ability).to.allow('read', 'User')
-
-      // sanity checking its actions (read => [index, show])
-      await expect(ability).to.allow('index', 'User')
-      await expect(ability).to.allow('show', 'User')
     })
   })
 

@@ -8,12 +8,6 @@ import { ManagerAbility } from './manager_ability'
 
 // as this is an entry-point file, we'll do some "setup/config" here
 
-// aliases
-Ability.addAlias('edit', ['update'])
-Ability.addAlias('destroy', ['delete'])
-Ability.addAlias('read', ['index', 'show'])
-
-
 export {
   Builder,
   AdminAbility,
