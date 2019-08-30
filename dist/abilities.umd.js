@@ -1314,12 +1314,6 @@
 
 	      var index = this.buildIndexFor(rules);
 
-	      if (process.env.NODE_ENV != 'production' && index.isAllInverted && rules.length) {
-	        // eslint-disable-next-line
-	        // TODO: throw new Error()
-	        console.warn('[abilities]: Ability contains only inverted rules. That means user will not be able to do any actions.');
-	      }
-
 	      this.__private.indexedRules = index.rules;
 	      this.__private.hasPerFieldRules = index.hasPerFieldRules;
 

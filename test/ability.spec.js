@@ -236,13 +236,6 @@ describe('Ability', () => {
         expect(secondSubscription).to.have.been.called
       })
 
-      it('warns if ability contains only inverted rules', () => {
-        sinon.spy(console, 'warn')
-        ability.update([{ inverted: true, action: 'read', subject: 'Post' }])
-
-        expect(console.warn).to.have.been.calledOnce
-      })
-
       function setupListenerChangesInListener() {
         const unsubscribe = sinon.spy(ability.on('update', function listen() {
           unsubscribe()
