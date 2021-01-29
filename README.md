@@ -1,2 +1,3 @@
-# Model.js
-Model to define and control your data.
+# Abilities.js
+
+Manage authorization in a (custom) per-resource/per-action basis.
