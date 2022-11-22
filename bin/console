@@ -13,8 +13,8 @@
  *
  * usage
  * ----
- * docker: `docker-compose exec api sh -c 'yarn run console'`
- * bash:   `yarn run console`
+ * docker: `docker-compose exec api sh -c 'bin/console'`
+ * bash:   `bin/console`
  *
  */
 
