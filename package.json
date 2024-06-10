@@ -1,16 +1,16 @@
 {
   "name": "@caiena/abilities",
   "private": false,
-  "version": "0.2.0-alpha",
+  "version": "0.2.0-alpha.1",
   "type": "module",
-  "main": "dist/index.js",
+  "main": "dist/abilities.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/caiena/abilities.js.git"
+    "url": "git+https://github.com/caiena/abilities.js.git"
   },
   "scripts": {
     "dev": "vite",
